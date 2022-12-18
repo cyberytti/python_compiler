@@ -1,0 +1,56 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+#Author: @sagnik628
+#Github: https://github.com/cyberytti/
+#If you went to contect with me then Dm me on insta(@sagnik628).
+
+loc=`pwd`
+list=(`for a in $@; do echo $a; done`)
+
+help(){
+	echo "./compile help:
+
+./compile <python file>
+
+./compile --version for the version
+
+[*]You can give multipale file name to compile at a time.
+
+[*]Good bye:)"
+}
+
+if [[ $1 = "--help" ]];then
+	help
+	exit
+fi
+
+if [[ "$1" = "--version" ]];then
+	echo "1.2"
+	exit
+fi
+
+if [[ "$1" = "" ]];then
+	echo "try: ./compile --help"
+	exit
+fi
+
+for files in ${list[@]}
+do
+	python -m py_compile $files 2> /data/data/com.termux/files/usr/etc/out.sh
+	if [[ -d "__pycache__" ]];then
+		cd __pycache__
+		for com in `ls`
+		do
+			for name in ${list[@]}
+			do
+				cp $com $name.x
+				mv $name.x $loc
+			done
+		done
+		cd ..;rm -rf __pycache__
+	else
+		echo "[*]Error: __pycache__ directory not found"
+		exit
+	fi
+
+done
