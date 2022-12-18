@@ -8,7 +8,7 @@ cd python_compiler
 
 chmod +x compile 
 
-mv compile `cd;pwd`
+mv compile $(cd;pwd)
 
 cd
 
