@@ -36,7 +36,7 @@ fi
 
 for files in ${list[@]}
 do
-	python -m py_compile $files 2> /data/data/com.termux/files/usr/etc/out.sh
+	python -m py_compile $files 2> `cd;cd ../usr/etc/;pwd`/out.sh
 	if [[ -d "__pycache__" ]];then
 		cd __pycache__
 		for com in `ls`
