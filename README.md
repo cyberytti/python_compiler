@@ -8,6 +8,10 @@ cd python_compiler
 
 chmod +x compile 
 
+mv compile `cd;pwd`
+
+cd
+
 ./compile --help
 
 # tested on only termux 
